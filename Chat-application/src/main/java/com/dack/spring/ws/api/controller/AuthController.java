@@ -1,16 +1,14 @@
-        package com.dack.spring.ws.api.controller;
+package com.dack.spring.ws.api.controller;
 
 import com.dack.spring.ws.api.model.ChatMessage;
-import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class ChatCotroller {
+public class AuthController {
 
-    @MessageMapping("/chat.register")
     @SendTo("/topic/public")
     public ChatMessage regisger(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor)
     {
@@ -18,7 +16,6 @@ public class ChatCotroller {
         return chatMessage;
     }
 
-    @MessageMapping("/chat.send")
     @SendTo("/topic/public")
     public ChatMessage sendMessage(@Payload ChatMessage chatMessage)
     {
