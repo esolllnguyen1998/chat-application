@@ -1,6 +1,6 @@
 package com.dack.spring.ws.Infrastructure.repo;
 
-import com.dack.spring.ws.api.model.User;
+import com.dack.spring.ws.Infrastructure.entities.User;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class FileHandle {
     private String filePath;
 
-    public FileHandle(String filePath) {
-        this.filePath = filePath;
+    public FileHandle() {
+        filePath = "src/main/java/com/dack/spring/ws/infrastructure/files/users.csv";
     }
 
     public ArrayList<String> ReadAllFile() {
@@ -73,7 +73,7 @@ public class FileHandle {
     }
 
     public void WriteToCVSFile(ArrayList<String> strUsers) throws IOException {
-        BufferedWriter writer = Files.newBufferedWriter(Paths.get("files/users.csv"));
+        BufferedWriter writer = Files.newBufferedWriter(Paths.get(filePath));
         writer.write("Username,Password,Fullname,Nickname,Email");
         writer.newLine();
         for (String user : strUsers) {

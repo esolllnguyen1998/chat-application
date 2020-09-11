@@ -1,4 +1,4 @@
-package com.dack.spring.ws.api.model;
+package com.dack.spring.ws.Infrastructure.entities;
 
 public class User {
     private String Username;
