@@ -4,11 +4,13 @@ import com.dack.spring.ws.Infrastructure.repo.Authenication;
 import com.dack.spring.ws.Infrastructure.repo.FileHandle;
 import com.dack.spring.ws.Infrastructure.entities.User;
 import com.dack.spring.ws.api.model.LoginModel;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 
@@ -31,12 +33,13 @@ public class AuthController {
     }
 
     @PostMapping("/auth/login")
+    @ResponseBody
     @CrossOrigin(origins = "http://localhost:3000")
-    public ResponseEntity login(@RequestBody LoginModel user) throws IOException {
-        boolean isLoggedIn = _authenication.Login(user);
+    public ResponseEntity<User> login(@RequestBody LoginModel user) throws IOException {
+        User userLogged = _authenication.Login(user);
 
-        if(isLoggedIn) {
-            return ResponseEntity.ok().build();
+        if(userLogged != null) {
+            return ResponseEntity.ok(userLogged);
         }
         return ResponseEntity.badRequest().build();
     }

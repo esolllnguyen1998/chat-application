@@ -21,8 +21,7 @@ public class FileHandle {
             reader = new BufferedReader(new FileReader(filePath));
             String line = reader.readLine();
             while (line != null) {
-                String strUser= BinaryToText(line);
-                lines.add(strUser);
+                lines.add(line);
                 line = reader.readLine();
             }
             reader.close();
@@ -30,17 +29,6 @@ public class FileHandle {
             e.printStackTrace();
         }
         return lines;
-    }
-
-    public String BinaryToText(String binaryString) {
-        StringBuilder stringBuilder = new StringBuilder();
-        int charCode;
-        for (int i = 0; i < binaryString.length(); i += 8) {
-            charCode = Integer.parseInt(binaryString.substring(i, i + 8), 2);
-            String returnChar = Character.toString((char) charCode);
-            stringBuilder.append(returnChar);
-        }
-        return stringBuilder.toString();
     }
 
     public void WriteUserToFile(User user, boolean isForce) throws IOException {

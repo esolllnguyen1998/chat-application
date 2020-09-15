@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringBootWebsocketApplication {
 
     public static void main(String[] args) {
+        var temp = new ChatServer(9000);
+        temp.start();
         SpringApplication.run(SpringBootWebsocketApplication.class, args);
     }
 

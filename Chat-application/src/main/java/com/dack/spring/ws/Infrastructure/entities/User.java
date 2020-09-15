@@ -1,6 +1,8 @@
 package com.dack.spring.ws.Infrastructure.entities;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private String Username;
     private String Password;
     private String Fullname;
@@ -8,6 +10,10 @@ public class User {
     private String Email;
 
     public User() {}
+
+    public User(String username) {
+        Username = username;
+    }
 
     public User(String username, String password, String fullname, String nickname, String email) {
         Username = username;

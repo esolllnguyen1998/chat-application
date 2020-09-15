@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Input } from 'reactstrap';
 import { toast } from 'react-toastify';
 import '../assets/login.scss';
-import { Redirect } from "react-router-dom";
+import App from "../App";
 
 export default class Login extends Component {
     constructor(props) {
@@ -19,7 +19,6 @@ export default class Login extends Component {
             username: this.state.username,
             password: this.state.password,
         };
-
         fetch('http://localhost:8080/auth/login', {
             method: 'POST',
             headers: {
@@ -28,12 +27,15 @@ export default class Login extends Component {
             body: JSON.stringify(data),
         })
             .then(res => {
-                console.log(res.status)
                 if (res.status == 400) {
                     toast('Username or Password is wrong')
                 }
                 if (res.status == 200) {
-                    return <Redirect to="http://localhost:8080" />
+                    res.json().then(data => {
+                        sessionStorage.setItem("nickname", data.nickname);
+                        sessionStorage.setItem("username", data.username);
+                    })
+                    window.location.reload(false);
                 }
             })
             .catch(console.log)
@@ -59,7 +61,7 @@ export default class Login extends Component {
                 </FormGroup>
                 <Button onClick={() => this.login()} style={{ width: "45%" }} type="button">Login</Button>
                 <br></br>
-                <a href="#" style={{ fontSize: "20px" }}>Register</a>
+                <a href="/register" style={{ fontSize: "20px" }}>Register</a>
             </Form>
         );
     }

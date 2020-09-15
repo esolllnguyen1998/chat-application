@@ -21,17 +21,17 @@ public class Authenication {
         listUsers = RetrieveUsersByStringBuilder(strUsers);
     }
 
-    public boolean Login(LoginModel model) {
-        User user = FindUser(listUsers, model.getUsername());
+    public User Login(LoginModel model) {
+        User user = FindUser(model.getUsername());
         if(user != null && model.getPassword().equals(user.getPassword())) {
-            return true;
+            return user;
         }
 
-        return false;
+        return null;
     }
 
-    public User FindUser(ArrayList<User> students, String username) {
-        for (User user : students) {
+    public User FindUser(String username) {
+        for (User user : listUsers) {
             if (username.equals(user.getUsername()))
                 return user;
         }
@@ -50,7 +50,7 @@ public class Authenication {
     }
 
     private User BinaryToUser(String strUser) {
-        var infors = strUser.split(";");
+        var infors = strUser.split(",");
         return new User(infors[0], infors[1], infors[2], infors[3], infors[4]);
     }
 }
