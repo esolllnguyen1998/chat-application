@@ -25,3 +25,10 @@ export function messageReceived(message) {
         message: message
     }
 }
+
+export function fileMessageReceived(file) {
+    return {
+        type: 'FILE_MESSAGE',
+        message: file
+    }
+}

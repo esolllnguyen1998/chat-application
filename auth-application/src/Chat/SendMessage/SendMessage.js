@@ -79,7 +79,7 @@ class SendMessage extends Component {
             event.preventDefault();
             var file = event.target.files[0];
             if (this.bytesToMegaBytes(file.size) > 5) {
-                toast("Vui lòng ch?n file nh? h?n 5mb.", { type: "warning" })
+                toast("Vui lï¿½ng ch?n file nh? h?n 5mb.", { type: "warning" })
             }
             else {
                 this.setState({ file })
@@ -87,6 +87,8 @@ class SendMessage extends Component {
         })
         return fileSelector;
     }
+
+    
 
     bytesToMegaBytes(bytes) {
         return bytes / (1024 * 1024);
