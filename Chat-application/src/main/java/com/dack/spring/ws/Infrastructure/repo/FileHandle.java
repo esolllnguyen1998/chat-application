@@ -1,7 +1,6 @@
 package com.dack.spring.ws.Infrastructure.repo;
 
 import com.dack.spring.ws.Infrastructure.entities.User;
-
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -31,33 +30,19 @@ public class FileHandle {
         return lines;
     }
 
-    public void WriteUserToFile(User user, boolean isForce) throws IOException {
-        String fileName = filePath;
-        FileWriter fw = new FileWriter(fileName, isForce);
-        byte[] bin_user = ConvertUserToBytes(user);
-        for (byte b : bin_user) {
-            fw.write(String.format("%8s", Integer.toBinaryString(b & 0xFF)).replace(' ', '0'));
-        }
-        fw.write(System.lineSeparator());
-        fw.close();
-    }
-
-    private static byte[] ConvertUserToBytes(User user) {
-        String strUser = user.getFullname() + ";" + user.getPassword() + ";" + user.getFullname() + ";"
-                + user.getNickname() + ";" + user.getEmail();
-        return strUser.getBytes();
-    }
-
-    public void UpdateNewListUserToFile(ArrayList<User> users) throws IOException {
-        boolean isFirstTime = true;
-        for (User user : users) {
-            if (isFirstTime) {
-                WriteUserToFile(user, false);
-                isFirstTime = false;
-                continue;
-            }
-            WriteUserToFile(user, true);
-        }
+    public void WriteUserToFile(User user) throws IOException {
+        FileWriter csvWriter  = new FileWriter(filePath, true);
+        csvWriter.append("\n");
+        csvWriter.append(user.getUsername());
+        csvWriter.append(",");
+        csvWriter.append(user.getPassword());
+        csvWriter.append(",");
+        csvWriter.append(user.getFullname());
+        csvWriter.append(",");
+        csvWriter.append(user.getNickname());
+        csvWriter.append(",");
+        csvWriter.append(user.getEmail());
+        csvWriter.close();
     }
 
     public void WriteToCVSFile(ArrayList<String> strUsers) throws IOException {

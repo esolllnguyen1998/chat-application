@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, FormGroup, Input } from 'reactstrap';
 import { toast } from 'react-toastify';
 import '../assets/login.scss';
-import App from "../App";
+import { Redirect } from "react-router-dom";
 
 export default class Login extends Component {
     constructor(props) {
@@ -10,7 +10,8 @@ export default class Login extends Component {
 
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            isLoggedIn: sessionStorage.getItem("username") == null || sessionStorage.getItem("username") == "" ? false : true,
         }
     }
 
@@ -32,7 +33,6 @@ export default class Login extends Component {
                 }
                 if (res.status == 200) {
                     res.json().then(data => {
-                        sessionStorage.setItem("nickname", data.nickname);
                         sessionStorage.setItem("username", data.username);
                     })
                     window.location.reload(false);
@@ -50,6 +50,10 @@ export default class Login extends Component {
     }
 
     render() {
+        if (this.state.isLoggedIn) {
+            return (< Redirect to='/chat' />);
+        }
+
         return (
             <Form className="login-form">
                 <h2>Login</h2>

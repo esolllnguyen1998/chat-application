@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import './UserList.scss'
+import {
+    Card, CardBody,
+    CardTitle, Button, Row
+} from 'reactstrap';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 class UserList extends Component {
+    constructor() {
+        super()
+    }
 
     render() {
         if (!this.props.users || this.props.users.length < 1) {
@@ -13,9 +20,11 @@ class UserList extends Component {
 
         return (
             <div className="left-menu">
-                <div style={{ textAlign: "center", fontSize: "30px" }}>Online List</div>
+                <div style={{ textAlign: "center", fontSize: "30px", fontWeight: "bold" }}>Online List</div>
                 <ListItem textAlign="center">
-                    {this.renderUserList()}
+                    <div style={{ display: "block" }}>
+                        {this.renderUserList()}
+                    </div>
                 </ListItem>
             </div>
         );
@@ -24,7 +33,19 @@ class UserList extends Component {
     renderUserList() {
         var userList = [];
         for (var item of this.props.users) {
-            userList.push(<ListItemText primary={item.nickname} />)
+            userList.push(
+                <Row>
+                    <Card style={{ width: "100%" }}>
+                        <CardBody >
+                            <CardTitle style={{ display: "inline-flex" }}>
+                                <h4 style={{ marginRight: "80%" }}>{item.nickname}</h4>
+                                <CheckCircleIcon color="inherit" style={{ marginTop: "6%", color: "#7FFF00" }} />
+                            </CardTitle>
+                            {item.username == this.props.thisUser.username ? <Button onClick={this.props.onLogout()} style={{ width: "100%" }}>Logout</Button> : <></>}
+                        </CardBody>
+                    </Card>
+                </Row>
+            )
         }
         return userList;
     }
@@ -32,7 +53,8 @@ class UserList extends Component {
 
 function mapStateToProps(state) {
     return {
-        users: state.users
+        users: state.users,
+        thisUser: state.thisUser
     }
 }
 

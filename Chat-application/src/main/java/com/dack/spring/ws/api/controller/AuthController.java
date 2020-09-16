@@ -19,16 +19,22 @@ public class AuthController {
     private FileHandle _fileHandle;
     private Authenication _authenication;
 
-    public AuthController()
-    {
+    public AuthController() {
         _fileHandle = new FileHandle();
         _authenication = new Authenication(_fileHandle);
         _authenication.Initialize();
     }
 
     @PostMapping("/auth/register")
+    @ResponseBody
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity regisger(@RequestBody User user) throws IOException {
-        _fileHandle.WriteUserToFile(user, false );
+        User userLogged = _authenication.FindUser(user.getUsername());
+
+        if (userLogged != null) {
+            return ResponseEntity.badRequest().body("User is exist.");
+        }
+        _fileHandle.WriteUserToFile(user);
         return ResponseEntity.ok().build();
     }
 
