@@ -1,5 +1,9 @@
 package com.dack.spring.ws.api.controller;
 
+import com.dack.spring.ws.Infrastructure.entities.User;
+import com.dack.spring.ws.Infrastructure.repo.Authenication;
+import com.dack.spring.ws.Infrastructure.repo.FileHandle;
+import com.dack.spring.ws.api.model.FileModel;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -17,23 +21,31 @@ import java.time.format.DateTimeFormatter;
 
 @Controller
 public class FileController {
+    private FileHandle _fileHandle;
+    private Authenication _authenication;
 
+    public FileController() {
+        _fileHandle = new FileHandle();
+        _authenication = new Authenication(_fileHandle);
+        _authenication.Initialize();
+    }
     String folder = "src/main/java/com/dack/spring/ws/infrastructure/files/";
 
     @PostMapping("/upload")
     @CrossOrigin(origins = "*")
-    public String upload(@RequestParam MultipartFile file) throws Exception {
+    @ResponseBody
+    public ResponseEntity<FileModel> upload(@RequestParam MultipartFile file, @RequestParam String username) throws Exception {
         LocalDateTime dateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmmss");
         String extension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
         String filename = dateTime.format(formatter).toString() + extension;
 
+        User user = _authenication.FindUser(username);
         Path path = Paths.get(folder + filename);
         Files.write(path, file.getBytes());
-
         String url = "http://localhost:8080/files/";
-        return url + filename;
+        FileModel fileModel = new FileModel(filename, file.getOriginalFilename(), url + filename + "/" + file.getOriginalFilename(), user, file.getSize());
+        return ResponseEntity.ok(fileModel);
     }
 
     @GetMapping(value = "/files/{fileId}/{fileName}")

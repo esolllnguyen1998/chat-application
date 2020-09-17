@@ -29,6 +29,6 @@ export function messageReceived(message) {
 export function fileMessageReceived(file) {
     return {
         type: 'FILE_MESSAGE',
-        message: file
+        fileInfo: file
     }
 }

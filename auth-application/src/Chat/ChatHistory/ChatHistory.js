@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-
+import { Card, CardTitle, CardSubtitle } from 'reactstrap';
+import DescriptionIcon from '@material-ui/icons/Description';
 import { connect } from 'react-redux';
+import './ChatHistory.scss';
 
 class ChatHistory extends Component {
 
     render() {
+        var messages = [];
         const style = {
             backgroundColor: '#eaeaea',
             padding: 15,
@@ -14,7 +17,10 @@ class ChatHistory extends Component {
             flexDirection: 'column'
         };
 
-        const msgs = this.props.messages.map((message, i) =>
+        messages.push(...this.props.messages);
+        messages.push(...this.props.fileMessages);
+
+        const msgs = messages.map((message, i) =>
             this.renderMessages(message, i)
         );
 
@@ -30,6 +36,8 @@ class ChatHistory extends Component {
             display: 'block',
             margin: '5px 0'
         };
+
+        var fileSize = 0;
 
         const isMe = this.props.thisUser.username === message.user.username;
         const floatDirection = isMe ? 'right' : 'left'
@@ -49,23 +57,46 @@ class ChatHistory extends Component {
             color: nameColor,
             float: floatDirection
         }
+
+        if (message) {
+            var fileSize = this.bytesToMegaBytes(message.size).toFixed(2)
+        }
+        console.log(message.fileName);
+
         return (
             <div key={i} style={style}>
                 <span style={textStyle}>
                     <span style={nameStyle}>{message.user.nickname}</span>
                     <br />
-                    {message.data}
+                    {message.fileName != null ?
+                        <Card className="image-hover" onClick={() => this.downloadFile(message.url)}>
+                            <DescriptionIcon fontSize="large" />
+                            <CardTitle style={{ color: "#66B2FF" }}  >{message.fileName}</CardTitle>
+                            <CardSubtitle style={{ color: "#66B2FF" }} >{fileSize}MB</CardSubtitle>
+                        </Card>
+                        : message.data
+                    }
                 </span>
             </div>
         );
     }
+
+    downloadFile(url) {
+        window.open(url);
+    }
+
+    bytesToMegaBytes(bytes) {
+        return bytes / (1024 * 1024);
+    }
+
 }
 
 
 function mapStateToProps(state) {
     return {
         messages: state.messages,
-        thisUser: state.thisUser
+        thisUser: state.thisUser,
+        fileMessages: state.fileMessages
     }
 }
 

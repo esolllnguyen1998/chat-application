@@ -10,6 +10,8 @@ import { connect } from 'react-redux';
 import { Row } from 'reactstrap';
 import './SendMessage.scss';
 import { toast } from 'react-toastify';
+import { fileMessageReceived } from '../../actions/index';
+import { bindActionCreators } from 'redux';
 
 class SendMessage extends Component {
 
@@ -17,7 +19,8 @@ class SendMessage extends Component {
         super(props);
         this.state = {
             inputValue: '',
-            file: null
+            file: null,
+            userName: sessionStorage.getItem("username"),
         }
         this.fileSelector = this.buildFileSelector();
     }
@@ -82,18 +85,36 @@ class SendMessage extends Component {
                 toast("Vui l�ng ch?n file nh? h?n 5mb.", { type: "warning" })
             }
             else {
-                this.setState({ file })
+                this.handleSaveFile(file)
             }
         })
         return fileSelector;
     }
 
-    
+    handleSaveFile(file) {
+        let formData = new FormData();
+        formData.append('file', file);
+        formData.append('username', this.state.userName);
+        fetch('http://localhost:8080/upload', {
+            method: 'POST',
+            body: formData,
+        })
+            .then(res => {
+                if (res.status == 400) {
+                    toast('Cannot upload.')
+                }
+                if (res.status == 200) {
+                    res.json().then(data => {
+                        this.props.fileMessageReceived(data)
+                    })
+                }
+            })
+            .catch(console.log)
+    }
 
     bytesToMegaBytes(bytes) {
         return bytes / (1024 * 1024);
     }
-
 
     sendMessage() {
         const socket = Singleton.getInstance();
@@ -116,7 +137,14 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(SendMessage);
+
+function mapDispatchToProps(dispatch, props) {
+    return bindActionCreators({
+        fileMessageReceived: fileMessageReceived
+    }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SendMessage);
 
 
 

@@ -107,7 +107,7 @@ function mapDispatchToProps(dispatch, props) {
         userJoined: userJoined,
         userJoinedAck: userJoinedAck,
         userLeft: userLeft,
-        messageReceived: messageReceived
+        messageReceived: messageReceived,
     }, dispatch);
 }
 
