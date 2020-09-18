@@ -1,37 +1,18 @@
 package com.dack.spring.ws.api.model;
 
 import com.dack.spring.ws.Infrastructure.entities.User;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Message implements Serializable{
-
     private User user;
     private MessageType type;
     private String data;
-
-    public MessageType getType() {
-        return type;
-    }
-
-    public void setType(MessageType type) {
-        this.type = type;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    public String getData(){
-        return data;
-    }
+    private FileModel filemodel;
 }

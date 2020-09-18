@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 import { Row } from 'reactstrap';
 import './SendMessage.scss';
 import { toast } from 'react-toastify';
-import { fileMessageReceived } from '../../actions/index';
 import { bindActionCreators } from 'redux';
 
 class SendMessage extends Component {
@@ -68,7 +67,7 @@ class SendMessage extends Component {
     }
 
     handleKeyPress = (event) => {
-        if (event.key === 'Enter') {
+        if (event.key === 'Enter' && this.state.inputValue != '') {
             this.sendMessage();
         }
     }
@@ -105,7 +104,7 @@ class SendMessage extends Component {
                 }
                 if (res.status == 200) {
                     res.json().then(data => {
-                        this.props.fileMessageReceived(data)
+                        this.sendFileMessage(data)
                     })
                 }
             })
@@ -114,6 +113,12 @@ class SendMessage extends Component {
 
     bytesToMegaBytes(bytes) {
         return bytes / (1024 * 1024);
+    }
+
+    sendFileMessage(fileModel) {
+        const socket = Singleton.getInstance();
+        let messageDto = JSON.stringify({ user: this.props.thisUser, data: "", type: MessageType.FILE_MESSAGE, filemodel: fileModel });
+        socket.send(messageDto);
     }
 
     sendMessage() {
@@ -137,14 +142,7 @@ function mapStateToProps(state) {
     }
 }
 
-
-function mapDispatchToProps(dispatch, props) {
-    return bindActionCreators({
-        fileMessageReceived: fileMessageReceived
-    }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SendMessage);
+export default connect(mapStateToProps)(SendMessage);
 
 
 

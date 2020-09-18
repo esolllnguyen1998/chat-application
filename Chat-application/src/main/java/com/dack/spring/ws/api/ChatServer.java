@@ -3,6 +3,7 @@ package com.dack.spring.ws.api;
 import com.dack.spring.ws.Infrastructure.entities.User;
 import com.dack.spring.ws.Infrastructure.repo.Authenication;
 import com.dack.spring.ws.Infrastructure.repo.FileHandle;
+import com.dack.spring.ws.api.model.FileModel;
 import com.dack.spring.ws.api.model.Message;
 import com.dack.spring.ws.api.model.MessageType;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -24,6 +25,7 @@ public class ChatServer extends WebSocketServer {
     private final static Logger logger = LogManager.getLogger(ChatServer.class);
 
     private HashMap<WebSocket, User> users;
+    private HashMap<WebSocket, FileModel> filemodel;
     private Authenication _authenication;
     private Set<WebSocket> conns;
 
@@ -33,6 +35,7 @@ public class ChatServer extends WebSocketServer {
         _authenication = new Authenication(_fileHandle);
         conns = new HashSet<>();
         users = new HashMap<>();
+        filemodel = new HashMap<>();
     }
 
     @Override
@@ -63,14 +66,16 @@ public class ChatServer extends WebSocketServer {
             Message msg = mapper.readValue(message, Message.class);
 
                 switch (msg.getType()) {
-                case USER_JOINED:
-                    addUser(_authenication.FindUser(msg.getUser().getUsername()), conn);
-                    break;
-                case USER_LEFT:
-                    removeUser(conn);
-                    break;
-                case TEXT_MESSAGE:
-                    broadcastMessage(msg);
+                    case USER_JOINED:
+                        addUser(_authenication.FindUser(msg.getUser().getUsername()), conn);
+                        break;
+                    case USER_LEFT:
+                        removeUser(conn);
+                        break;
+                    case TEXT_MESSAGE:
+                        broadcastMessage(msg);
+                    case FILE_MESSAGE:
+                        broadcastMessage(msg);
             }
 
             System.out.println("Message from user: " + msg.getUser() + ", text: " + msg.getData() + ", type:" + msg.getType());
@@ -100,7 +105,7 @@ public class ChatServer extends WebSocketServer {
         ObjectMapper mapper = new ObjectMapper();
         try {
             String messageJson = mapper.writeValueAsString(msg);
-            for (WebSocket sock : conns) {
+                for (WebSocket sock : conns) {
                 sock.send(messageJson);
             }
         } catch (JsonProcessingException e) {

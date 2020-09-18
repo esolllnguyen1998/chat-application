@@ -58,20 +58,19 @@ class ChatHistory extends Component {
             float: floatDirection
         }
 
-        if (message) {
-            var fileSize = this.bytesToMegaBytes(message.size).toFixed(2)
+        if (message.filemodel) {
+            var fileSize = this.bytesToMegaBytes(message.filemodel.size).toFixed(2)
         }
-        console.log(message.fileName);
 
         return (
             <div key={i} style={style}>
                 <span style={textStyle}>
                     <span style={nameStyle}>{message.user.nickname}</span>
                     <br />
-                    {message.fileName != null ?
-                        <Card className="image-hover" onClick={() => this.downloadFile(message.url)}>
+                    {message.filemodel.fileName != null ?
+                        <Card className="image-hover" onClick={() => this.downloadFile(message.filemodel.url)}>
                             <DescriptionIcon fontSize="large" />
-                            <CardTitle style={{ color: "#66B2FF" }}  >{message.fileName}</CardTitle>
+                            <CardTitle style={{ color: "#66B2FF" }}  >{message.filemodel.fileName}</CardTitle>
                             <CardSubtitle style={{ color: "#66B2FF" }} >{fileSize}MB</CardSubtitle>
                         </Card>
                         : message.data

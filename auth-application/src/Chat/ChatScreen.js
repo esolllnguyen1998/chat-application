@@ -6,7 +6,7 @@ import MessageType from './SendMessage/MessageType';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
-import { userJoined, userJoinedAck, userLeft, messageReceived } from '../actions/index';
+import { userJoined, userJoinedAck, userLeft, messageReceived, fileMessageReceived} from '../actions/index';
 import { bindActionCreators } from 'redux';
 import { Redirect } from "react-router-dom";
 
@@ -62,6 +62,9 @@ class ChatScreen extends Component {
                 case MessageType.TEXT_MESSAGE:
                     self.props.messageReceived(message);
                     break;
+                case MessageType.FILE_MESSAGE:
+                    self.props.fileMessageReceived(message);
+                    break;
                 case MessageType.USER_JOINED:
                     users = JSON.parse(message.data);
                     self.props.userJoined(users);
@@ -108,6 +111,7 @@ function mapDispatchToProps(dispatch, props) {
         userJoinedAck: userJoinedAck,
         userLeft: userLeft,
         messageReceived: messageReceived,
+        fileMessageReceived: fileMessageReceived
     }, dispatch);
 }
 

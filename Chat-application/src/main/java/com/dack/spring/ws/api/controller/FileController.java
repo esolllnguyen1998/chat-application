@@ -21,14 +21,6 @@ import java.time.format.DateTimeFormatter;
 
 @Controller
 public class FileController {
-    private FileHandle _fileHandle;
-    private Authenication _authenication;
-
-    public FileController() {
-        _fileHandle = new FileHandle();
-        _authenication = new Authenication(_fileHandle);
-        _authenication.Initialize();
-    }
     String folder = "src/main/java/com/dack/spring/ws/infrastructure/files/";
 
     @PostMapping("/upload")
@@ -40,11 +32,10 @@ public class FileController {
         String extension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
         String filename = dateTime.format(formatter).toString() + extension;
 
-        User user = _authenication.FindUser(username);
         Path path = Paths.get(folder + filename);
         Files.write(path, file.getBytes());
         String url = "http://localhost:8080/files/";
-        FileModel fileModel = new FileModel(filename, file.getOriginalFilename(), url + filename + "/" + file.getOriginalFilename(), user, file.getSize());
+        FileModel fileModel = new FileModel(file.getOriginalFilename(), url + filename + "/" + file.getOriginalFilename(), file.getSize());
         return ResponseEntity.ok(fileModel);
     }
 
