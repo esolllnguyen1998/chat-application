@@ -1,1 +1,5 @@
-1. Run
+1. Chay file "run-server.cmd"
+2. Chay file "run-client.cmd"
+3. Dang Ky
+4. Dang nhap
+5. Bat dau chat
