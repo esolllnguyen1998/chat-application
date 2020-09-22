@@ -1,5 +1,6 @@
 1. Chay file "run-server.cmd"
-2. Chay file "run-client.cmd"
-3. Dang Ky
-4. Dang nhap
-5. Bat dau chat
+2. Mở source code Chat-application bằng IntellJ.
+3. Install libaries sau đó run SpringBootWebsocketApplication
+4. Dang Ky
+5. Dang nhap
+6. Bat dau chat

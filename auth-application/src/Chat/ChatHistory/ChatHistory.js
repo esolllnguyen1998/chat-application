@@ -67,7 +67,7 @@ class ChatHistory extends Component {
                 <span style={textStyle}>
                     <span style={nameStyle}>{message.user.nickname}</span>
                     <br />
-                    {message.filemodel.fileName != null ?
+                    {message.filemodel ?
                         <Card className="image-hover" onClick={() => this.downloadFile(message.filemodel.url)}>
                             <DescriptionIcon fontSize="large" />
                             <CardTitle style={{ color: "#66B2FF" }}  >{message.filemodel.fileName}</CardTitle>
