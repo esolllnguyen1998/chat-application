@@ -21,7 +21,7 @@ import java.time.format.DateTimeFormatter;
 
 @Controller
 public class FileController {
-    String folder = "src/main/java/com/dack/spring/ws/infrastructure/files/";
+    String folder = "files/";
 
     @PostMapping("/upload")
     @CrossOrigin(origins = "*")

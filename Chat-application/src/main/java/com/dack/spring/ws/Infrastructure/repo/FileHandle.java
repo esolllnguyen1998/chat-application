@@ -10,7 +10,7 @@ public class FileHandle {
     private String filePath;
 
     public FileHandle() {
-        filePath = "src/main/java/com/dack/spring/ws/infrastructure/files/users.csv";
+        filePath = "./files/users.csv";
     }
 
     public ArrayList<String> ReadAllFile() {

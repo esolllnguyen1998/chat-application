@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b46539b5-32a4-48c7-93ec-2e430960a96b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/chat-application.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/Auth/login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/Auth/register.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/Chat/Chat.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/Chat/ChatHistory/ChatHistory.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/Chat/ChatHistory/ChatHistory.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/Chat/ChatScreen.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/Chat/SendMessage/MessageType.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/Chat/SendMessage/SendMessage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/Chat/SendMessage/SendMessage.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/UserList/UserList.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/UserList/UserList.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/actions/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/assets/login.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/privateNavigate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/reducers/FileMessagesReducer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/reducers/MessagesReducer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/reducers/ThisUserReducer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/reducers/UsersReducer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/reducers/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/registerServiceWorker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/serviceWorker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/src/socket.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-application/yarn.lock" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1i60uY1LK5UehWYqYseDgz6ceT9" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b46539b5-32a4-48c7-93ec-2e430960a96b" name="Default Changelist" comment="" />
+      <created>1601212956646</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1601212956646</updated>
+      <workItem from="1601212958976" duration="73000" />
+      <workItem from="1601213058296" duration="56000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="739" y="261" key="FileChooserDialogImpl" timestamp="1601213111479">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="739" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1601213111479" />
+    <state x="342" y="140" key="new project wizard" timestamp="1601213113557">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="342" y="140" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1601213113557" />
+  </component>
+</project>
